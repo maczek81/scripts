@@ -21,12 +21,12 @@ pipeline {
       }
       
       // Execute when branch = 'master'
-      stage("BASIC WHEN - Branch") {
+      stage('checkout') {
          when {
             branch 'master'
 	 }
          steps {
-            echo 'BASIC WHEN - Master Branch!'
+            checkout scm
          }
       }
       
@@ -67,19 +67,6 @@ pipeline {
         }
       }
       
-      // When - Not AnyOf Example
-      stage("Not AnyOf") {
-         when {
-            not {
-               anyOf {
-                  branch "development"
-                  environment name:'VALUE_TWO', value: '4'
-               }
-            }
-         }
-         steps {
-            echo "Not AnyOf - Works!"
-         }
-      }
+
    }
 }
